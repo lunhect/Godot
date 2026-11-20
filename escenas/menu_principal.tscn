@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://87pqp6j8wjk7"]
+
+[ext_resource type="Texture2D" uid="uid://bij8c0k3myqmo" path="res://assets/parallax_mountain_pack/layers/parallax-mountain-bg.png" id="1_37xja"]
+[ext_resource type="Texture2D" uid="uid://beu1x06t75ad8" path="res://assets/parallax_mountain_pack/layers/parallax-mountain-montain-far.png" id="2_olkao"]
+[ext_resource type="Texture2D" uid="uid://0piqcitbglif" path="res://assets/parallax_mountain_pack/layers/parallax-mountain-mountains.png" id="3_bddn2"]
+[ext_resource type="Texture2D" uid="uid://cx0i086kkoh8e" path="res://assets/parallax_mountain_pack/layers/parallax-mountain-trees.png" id="4_x5yya"]
+[ext_resource type="Texture2D" uid="uid://ceno8ggtyomkj" path="res://assets/parallax_mountain_pack/layers/parallax-mountain-foreground-trees.png" id="5_v8ef6"]
+[ext_resource type="Script" uid="uid://c5gjl0y6fctb6" path="res://scripts/menu_principal.gd" id="6_menu"]
+
+[node name="MenuPrincipal" type="Control" unique_id=1208501825]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_menu")
+
+[node name="Fondo" type="Node2D" parent="." unique_id=997955090]
+
+[node name="ParallaxBackground" type="Parallax2D" parent="Fondo" unique_id=686296903]
+repeat_size = Vector2(640.5, 0)
+autoscroll = Vector2(-2, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/ParallaxBackground" unique_id=1752609207]
+position = Vector2(319.74997, 179.00002)
+scale = Vector2(2.3547795, 2.2625)
+texture = ExtResource("1_37xja")
+
+[node name="ParallaxBackground2" type="Parallax2D" parent="Fondo" unique_id=1718602269]
+repeat_size = Vector2(324.5, 0)
+autoscroll = Vector2(-5, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/ParallaxBackground2" unique_id=1786283783]
+position = Vector2(162, 218)
+scale = Vector2(1.1930147, 0.925)
+texture = ExtResource("2_olkao")
+
+[node name="ParallaxBackground3" type="Parallax2D" parent="Fondo" unique_id=406121842]
+repeat_size = Vector2(642, 0)
+autoscroll = Vector2(-10, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/ParallaxBackground3" unique_id=15099755]
+position = Vector2(319, 224.99998)
+scale = Vector2(1.180147, 1.2875)
+texture = ExtResource("3_bddn2")
+
+[node name="ParallaxBackground4" type="Parallax2D" parent="Fondo" unique_id=1577706185]
+repeat_size = Vector2(643, 0)
+autoscroll = Vector2(-20, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/ParallaxBackground4" unique_id=578107472]
+position = Vector2(318.50003, 176.25)
+scale = Vector2(1.1819854, 2.2968752)
+texture = ExtResource("4_x5yya")
+
+[node name="ParallaxBackground5" type="Parallax2D" parent="Fondo" unique_id=1537753931]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-35, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/ParallaxBackground5" unique_id=1726572676]
+position = Vector2(319, 226)
+scale = Vector2(1.1764706, 1.675)
+texture = ExtResource("5_v8ef6")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1249652757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1172151669]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=23216306]
+layout_mode = 2
+text = "SUNSET RUINS"
+
+[node name="BotonJugar" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1797170074]
+layout_mode = 2
+text = "JUGAR"
+
+[node name="BotonSalir" type="Button" parent="CenterContainer/VBoxContainer" unique_id=175266169]
+layout_mode = 2
+text = "SALIR"

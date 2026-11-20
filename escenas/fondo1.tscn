@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bvpdp8rgjho46"]
+
+[ext_resource type="Texture2D" uid="uid://8464nkdul7hx" path="res://assets/Background/01 background.png" id="1_loge6"]
+[ext_resource type="Texture2D" uid="uid://cibyslao7x4lj" path="res://assets/Background/03 background A.png" id="2_y6ko8"]
+[ext_resource type="Texture2D" uid="uid://gogjah1rar37" path="res://assets/Background/04 background.png" id="3_618k4"]
+[ext_resource type="Texture2D" uid="uid://544ba84uu8hk" path="res://assets/Background/05 background.png" id="4_pw2oj"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" unique_id=899373446]
+
+[node name="Cielo" type="ParallaxLayer" parent="." unique_id=783365711]
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cielo" unique_id=47215714]
+position = Vector2(382, 158.99998)
+scale = Vector2(2.859155, 2.0182292)
+texture = ExtResource("1_loge6")
+
+[node name="Mountains" type="ParallaxLayer" parent="." unique_id=1673286648]
+
+[node name="Sprite2D" type="Sprite2D" parent="Mountains" unique_id=1118193629]
+position = Vector2(318, 105.937485)
+scale = Vector2(1.6384976, 1.3850912)
+texture = ExtResource("2_y6ko8")
+
+[node name="CespedLejano" type="ParallaxLayer" parent="." unique_id=363277685]
+
+[node name="Sprite2D" type="Sprite2D" parent="CespedLejano" unique_id=128484599]
+position = Vector2(317.5, 176)
+scale = Vector2(1.6408451, 0.7161459)
+texture = ExtResource("3_618k4")
+
+[node name="CespedCercano" type="ParallaxLayer" parent="." unique_id=2126085136]
+
+[node name="Sprite2D" type="Sprite2D" parent="CespedCercano" unique_id=1706804233]
+position = Vector2(318.50003, 181)
+scale = Vector2(1.6408452, 1)
+texture = ExtResource("4_pw2oj")

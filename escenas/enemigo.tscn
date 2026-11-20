@@ -22,10 +22,6 @@ texture = ExtResource("2_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cuerpo")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(14, 0)
-target_position = Vector2(0, 34)
-
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2

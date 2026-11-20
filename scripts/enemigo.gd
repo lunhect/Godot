@@ -1,23 +1,26 @@
 extends CharacterBody2D
 
-const SPEED = 40.0
-var dir := -1.0
+var velocidad = 40    # lo rápido que anda
+var direccion = 1     # 1 = derecha, -1 = izquierda
+var tiempo = 0.0      # segundos que lleva andando hacia un lado
 
 
-func _physics_process(delta: float) -> void:
-	velocity = Vector2(dir * SPEED, velocity.y + get_gravity().y * delta)
+func _physics_process(delta):
+	# Gravedad: lo hace caer hasta el suelo
+	velocity.y += get_gravity().y * delta
+
+	# Anda hacia el lado de "direccion"
+	velocity.x = direccion * velocidad
 	move_and_slide()
-	# Da la vuelta en una pared o en el borde de la plataforma
-	if is_on_wall() or (is_on_floor() and not $RayCast2D.is_colliding()):
-		dir = -dir
-		$RayCast2D.position.x = 14 * dir
-		$Sprite2D.flip_h = dir < 0
+
+	# Cada 3 segundos da la vuelta
+	tiempo += delta
+	if tiempo > 3:
+		tiempo = 0
+		direccion = -direccion
+		$Sprite2D.flip_h = direccion < 0  # gira el dibujo
 
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.velocity.y > 0 and body.global_position.y < global_position.y - 14:
-		Sonido.play("golpe")  # el jugador le salta encima
-		body.rebotar()
-		queue_free()
-	else:
-		body.die()
+func _on_hitbox_body_entered(body):
+	# Si el jugador lo toca, el jugador muere
+	body.die()

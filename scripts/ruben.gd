@@ -1,56 +1,47 @@
 extends CharacterBody2D
 
-const SPEED = 120.0
-const JUMP_VELOCITY = -300.0
+var velocidad = 120      # lo rápido que anda
+var fuerza_salto = -300  # lo alto que salta (negativo = hacia arriba)
+var muerto = false
 
-var was_on_floor := true
-var dead := false
-
-@onready var sprite: AnimatedSprite2D = $animacion
+@onready var sprite = $animacion  # el dibujo animado del personaje
 
 
-func _ready() -> void:
-	sprite.sprite_frames.set_animation_loop("jump_landing", false)
-
-
-func _physics_process(delta: float) -> void:
-	if dead:
+func _physics_process(delta):
+	# Si ha muerto, no hace nada más
+	if muerto:
 		return
 
+	# Gravedad: lo hace caer cuando no está en el suelo
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-	elif Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("ui_accept"):
-		velocity.y = JUMP_VELOCITY
+		velocity.y += get_gravity().y * delta
+
+	# Salto con la tecla Espacio, solo si está en el suelo
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = fuerza_salto
 		Sonido.play("salto")
 
-	var dir := Input.get_axis("left", "right")
-	velocity.x = dir * SPEED
+	# Izquierda / derecha: da -1, 0 o 1
+	var direccion = Input.get_axis("left", "right")
+	velocity.x = direccion * velocidad
 	move_and_slide()
 
-	if dir:
-		sprite.flip_h = dir < 0
-
+	# Elige la animación
+	if direccion != 0:
+		sprite.flip_h = direccion < 0  # mira hacia donde anda
 	if not is_on_floor():
 		sprite.play("jump")
-	elif not was_on_floor:
-		sprite.play("jump_landing")
-		Sonido.play("aterrizaje")
-	elif dir or not (sprite.animation == "jump_landing" and sprite.is_playing()):
-		sprite.play("run" if dir else "idle")
-
-	was_on_floor = is_on_floor()
+	elif direccion != 0:
+		sprite.play("run")
+	else:
+		sprite.play("idle")
 
 
-func rebotar() -> void:
-	velocity.y = JUMP_VELOCITY * 0.7
-
-
-func die() -> void:
-	if dead:
+func die():
+	if muerto:
 		return
-	dead = true
-	velocity = Vector2.ZERO
+	muerto = true
 	sprite.play("fail")
 	Sonido.play("muerte")
-	await get_tree().create_timer(1.5).timeout
-	get_tree().reload_current_scene()
+	await get_tree().create_timer(1.5).timeout  # espera 1,5 segundos
+	get_tree().reload_current_scene()           # reinicia el nivel
